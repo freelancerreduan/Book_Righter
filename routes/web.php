@@ -1,0 +1,69 @@
+<?php
+
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\frontendController;
+use App\Http\Controllers\adminController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('frontend.index');
+});
+
+
+// Admin Dashboard
+Route::get('admin/dashboard', function() {
+    return view('admin.dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+Route::get('/admin/home/page', [adminController::class, 'home_page'])->name('home.page');
+Route::post('/admin/home/page/store', [adminController::class, 'home_store'])->name('admin.home.store');
+
+// About
+Route::get('/admin/about/page', [adminController::class, 'about_page'])->name('about.page');
+Route::post('/admin/about/page/store', [adminController::class, 'about_store'])->name('admin.about.store');
+Route::get('/admin/about/page/details', [adminController::class, 'about_details'])->name('about.page.details');
+Route::post('/admin/about/page/details/store', [adminController::class, 'about_details_store'])->name('about.details.store');
+Route::get('/about/page/profiles', [adminController::class, 'about_profile'])->name('about_profile');
+
+Route::get('/admin/about/page/details/delete/{id}', [adminController::class, 'about_details_delete'])->name('about.details.delete');
+Route::get('/admin/about/page/details/edit/{id}', [adminController::class, 'about_details_edit'])->name('about.details.edit');
+// Route::post('/about/page/details/update/{id}', [adminController::class, 'about_details_update'])->name('about.details.update');
+Route::put('/about-details-update/{id}', [adminController::class, 'about_details_update'])->name('about_details_update');
+
+// Social Media
+Route::get('/admin/add/social/media',[adminController::class, 'social_media'])->name('social_media');
+Route::post('/admin/add/social/media/store',[adminController::class, 'social_media_store'])->name('social_media.store');
+
+// book area
+Route::get('/admin/add/book',[adminController::class, 'book_author'])->name('admin.book.author');
+Route::post('/admin/add/book/store', [adminController::class , 'book_author_store'])->name('admin.book.author.store');
+Route::get('/admin/book/add/' , [adminController::class, 'book_add'])->name('admin.book.add');
+// Route::post('/book/add/store', [adminController::class, 'book_add_store'])->name('book.add.store');
+
+
+
+
+
+
+// Frontend Sections
+Route::get('/', [frontendController::class, 'index'])->name('index');
+Route::get('/about', [frontendController::class, 'about'])->name('about');
+Route::get('/book', [frontendController::class, 'book'])->name('book');
+Route::get('/blog', [frontendController::class, 'blog'])->name('blog');
+Route::get('/contact', [frontendController::class, 'contact'])->name('contact');
+
+
+
+
+
+
+require __DIR__.'/auth.php';
+
+
