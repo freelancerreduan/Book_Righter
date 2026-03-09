@@ -3,16 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Home;
+use App\Models\About;
+use App\Models\AboutDetails;
+use App\Models\SocialMedia;
+use Illuminate\Support\Str;
 
 class frontendController extends Controller
 {
     //
     function index() {
-        return view('frontend.index');
+        $home_data = Home::first();
+        $social_media = SocialMedia::all();
+        $about_details = About::first();
+        // dd($about_details);
+        $about_description = Str::limit(strip_tags($about_details->description), 10);
+        // dd($about_description);
+        return view('frontend.index', compact('home_data', 'social_media', 'about_details', 'about_description'));
     }
 
     function about() {
-        return view('frontend.about');
+        $about = About::first();
+        $about_details = AboutDetails::all();
+        $social_media = SocialMedia::all();
+        return view('frontend.about', compact('about','about_details','social_media'));
     }
 
     function book() {

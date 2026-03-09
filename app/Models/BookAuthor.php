@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BookLink extends Model
+class BookAuthor extends Model
 {
     //
     protected $fillable = [
-        'book_id',
-        'book_platform_name',
-        'book_platform_link',
+        'book_author_title',
+        'book_author_des',
     ];
 }

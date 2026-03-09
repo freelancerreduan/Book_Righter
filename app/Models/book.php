@@ -3,12 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\BookLink;
 
-class book extends Model
+class Book extends Model
 {
     //
     protected $fillable = [
-        'book_author_title',
-        'book_author_des',
+        'book_name',
+        'book_des',
+        'book_img',
     ];
+
+    function rel_to_book_link(){
+        return $this->hasMany(BookLink::class);
+    }
 }

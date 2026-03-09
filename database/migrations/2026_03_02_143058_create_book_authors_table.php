@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('homes', function (Blueprint $table) {
+        Schema::create('book_authors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('title');
-            $table->longText('description');
-            $table->string('img')->nullable();
-            $table->string('book_img')->nullable();
+            $table->string('book_author_title');
+            $table->string('book_author_des');
+            // $table->string('book_img');
+            // $table->string('book_name');
+            // $table->string('book_des');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('homes');
+        Schema::dropIfExists('book_authors');
     }
 };

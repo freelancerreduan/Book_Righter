@@ -1,140 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <title>About</title>
-
-    <style>
-        .professional_details_area {
-            background-color: #efeeef;
-            height: ;
-        }
-
-        .icon_area {
-            margin-right: 2%;
-        }
-
-        .icon_style {
-            font-size: 38px;
-            margin-right: 10px;
-            /* box-shadow: 3px 12px 21px 0px gray; */
-            border-radius: 50%;
-        }
-    </style>
-      <style>
-        .navbar_custome {
-            background-color: #efeeef;
-        }
-
-        .nav_custome {
-            font-weight: 800;
-            font-size: 20px;
-        }
-
-        .main-content {
-            background-color: #f5f1eb;
-        }
-
-        .area_select {
-            width: 80%;
-
-            margin: auto;
-        }
-
-        .main_heading {
-            font-weight: 700;
-        }
-
-        .author_name {
-            font-style: italic;
-        }
-
-        .custome_btn {
-            font-size: 20px;
-            font-weight: 400;
-            background-color: #c69c6d;
-        }
-
-        .service_area_main {
-            background-color: #efeeef;
-        }
-
-        .service_area {
-            width: 90%;
-            margin: auto;
-        }
-         h5 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .service_area {
-            padding: 60px 0;
-        }
-
-        .service_area .col {
-            background: #fff;
-            padding: 30px;
-            margin: 10px 0;
-            border-radius: 5px;
-            min-height: 280px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .service_area .col:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .service_area img {
-            border-radius: 5px;
-            object-fit: cover;
-            height: 200px;
-            width: 100%;
-        }
-
-        .btn-dark {
-            background-color: #333;
-            border: none;
-            padding: 8px 20px;
-        }
-
-        .btn-dark:hover {
-            background-color: #000;
-            color: #fff;
-        }
-
-        .btn-success {
-            background-color: #a87444;
-            border: none;
-            padding: 8px 20px;
-        }
-
-        .btn-success:hover {
-            background-color: #8d6038;
-            color: #fff;
-        }
-
-        p {
-            color: #555;
-        }
-
-        @media (max-width: 768px) {
-            .service_area .col {
-                margin-bottom: 20px;
-            }
-        }
-
-    </style>
-</head>
-
-<body> -->
     @include('frontend.layouts.header')
     <div class="main-contain">
         @include('frontend.layouts.navbar')
@@ -143,30 +6,17 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-md-4 col-lg-4">
-                            <div class="image_area">
-                                <img src="{{ asset('frontend/image/polash_mollah.png') }}" alt="Polash Mollah" class="img-fluid rounded mt-3">
+                            <div class="image_area ">
+                                <img src="{{ asset('admin/img/'. $about->img) }}" alt="Polash Mollah" class="img-fluid rounded mt-5" style="height: 60vh; width: 100% !important; ">
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 d-flex align-items-center">
                             <div class="right_side_section py-5">
-                                <h1 class="main_heading">Polash Mollah __</h1>
-                                <h3 class="text-muted author_name">Bangladeshi Author & Write </h3>
+                                <h1 class="main_heading">{{ $about->name }}</h1>
+                                <h3 class="text-muted author_name">{{ $about->title }}</h3>
                                 <hr>
                                 <p class="lead">
-                                    Polash Mollah is a Bangladeshi author, known for his works in fiction and
-                                    non-fiction.
-                                    He has written several novels, short stories, and essays that have garnered critical
-                                    acclaim and a wide readership. Mollah's writing often explores themes of identity,
-                                    culture, and social issues in Bangladesh.
-                                      He has written several novels, short stories, and essays that have garnered critical
-                                    acclaim and a wide readership. Mollah's writing often explores themes of identity,
-                                    culture, and social issues in Bangladesh.
-                                      He has written several novels, short stories, and essays that have garnered critical
-                                    acclaim and a wide readership. Mollah's writing often explores themes of identity,
-                                    culture, and social issues in Bangladesh.
-                                      He has written several novels, short stories, and essays that have garnered critical
-                                    acclaim and a wide readership. Mollah's writing often explores themes of identity,
-                                    culture, and social issues in Bangladesh.
+                                    {{ html_entity_decode(strip_tags($about->description)) }}
                                 </p>
                                 <!-- <i class="fa-brands fa-facebook" style="height:30px; width: 30px;"></i> -->
                             </div>
@@ -176,42 +26,25 @@
                         <div class="professional_details_area rounded">
                             <p style="font-size: 25px;" class="my-4 py-2 fw-bold ms-2">Professional Details</p>
                         </div>
-                        <p style="font-size: 18px;">
-                            <span class="fw-bold">Name:</span> Polash Mollah
-                        </p>
-                        <p style="font-size: 18px;">
-                            <span class="fw-bold">Date of Birth:</span> January 1, 1980
-                        </p>
-                        <p style="font-size: 18px;">
-                            <span class="fw-bold">Nationality:</span> Bangladeshi
-                        </p>
-                        <p style="font-size: 18px;">
-                            <span class="fw-bold">Writing Focus:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, laudantium.
-                        </p>
-                        <p style="font-size: 18px;">
-                            <span class="fw-bold">Industry:</span> Digital Publishing,
-                        </p>
+                        @foreach ($about_details as $detail)
+                            <p style="font-size: 18px;">
+                                <span class="fw-bold">{{ $detail->filed_name }}:</span> {{ $detail->filed_value }}
+                            </p>
+                        @endforeach
+                      
                     </div>
                     <div class="professional_details_area rounded"> 
                         <p style="font-size: 25px;" class="my-4 py-2 fw-bold ms-2">Online Profiles</p>
                     </div>
                     <div class="social-icons my-3 p-5 d-flex align-items-center justify-content-center">
-                        <div class="icon_area d-flex align-items-center ">
-                            <i class="fa-brands fa-facebook icon_style" style="font-size : 30px; margin-right: 10px;"></i>
-                            <span>Facebook</span>
-                        </div>
-                        <div class="icon_area d-flex align-items-center ">
-                            <i class="fa-brands fa-twitter icon_style" style="font-size : 30px; margin-right: 10px;"></i>
-                            <span>Twitter</span>
-                        </div>
-                        <div class="icon_area d-flex align-items-center ">
-                            <i class="fa-brands fa-linkedin icon_style" style="font-size : 30px; margin-right: 10px;"></i>
-                            <span>LinkedIn</span>
-                        </div>
-                        <div class="icon_area d-flex align-items-center ">
-                            <i class="fa-solid fa-envelope icon_style" style="font-size : 30px; margin-right: 10px;"></i>
-                            <span>Email</span>
-                        </div>
+                        @foreach ($social_media as $media)
+                            <div class="icon_area d-flex align-items-center me-2">
+                               <a href="{{ $media->social_link }}" target="_blank" class="me-0">
+                                   <i class="{{ $media->social_icon }}" style="font-size : 30px; margin-right: 10px;"></i>
+                                </a>
+                                <span>{{ $media->social_name }}</span>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

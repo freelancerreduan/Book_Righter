@@ -13,7 +13,7 @@
                     <label for="exampleInputUsername1" class="form-label">Social Name</label>
                     <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="off"
                         placeholder="Enter Social name" name="social_name" value="">
-                    @error('name')
+                    @error('social_name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
@@ -22,18 +22,20 @@
                     <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Your Social Link"
                         name="social_link" value="">
 
-                    @error('title')
+                    @error('social_link')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Social Icon Font Awesome 5</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Your Social Icon"
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Your Social Icon Code"
                         name="social_icon" value="">
+
                     @error('social_icon')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+
                 <button type="submit" class="btn btn-primary me-2">Submit</button>
             </form>
         </div>
@@ -50,16 +52,24 @@
                             <th>Social Name</th>
                             <th>Social Link</th>
                             <th>Social Icon</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($social_media as $item)
+                        {{-- @dd($item); --}}
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->social_name }}</td>
                                 <td>{{ $item->social_link }}</td>
-                                <td><i class="{{ $item->social_icon }}"></i></td>
-
+                                <td>{{ $item->social_icon }}</td>
+                                <td>
+                                    <form action="{{ route('social_media.delete', $item->id) }}" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this social media?')">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -85,7 +95,7 @@
             });
             Toast.fire({
                 icon: "success",
-                title: "Updated successfully"
+                title: "successfully"
             });
         </script>
     @endif
