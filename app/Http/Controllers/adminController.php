@@ -33,7 +33,7 @@ class adminController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'img' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:3048',
-            'book_img' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:3048',
+            'book_img' => 'nullable|image|mimes:jpeg,jpg,png,gif,weab|max:3048',
         ]);
 
         $home = Home::firstOrNew(['id' => 1]);
@@ -252,7 +252,7 @@ class adminController extends Controller
     {
         $request->validate([
             'author_title' => 'required|string|max:255',
-            'author_description' => 'required|string|max:255',
+            'author_description' => 'required|string|max:5000',
         ]);
 
         // dd($request->all());
@@ -277,7 +277,7 @@ class adminController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string|max:500',
             'book_img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 

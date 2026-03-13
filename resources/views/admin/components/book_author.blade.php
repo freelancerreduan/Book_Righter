@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-body">
 
-            <h5 class="card-title">about Page Update</h5>
+            <h5 class="card-title">Book Author Update</h5>
             {{-- @if (session('success'))
                 <strong> {{ session('success') }} </strong>
             @endif --}}
