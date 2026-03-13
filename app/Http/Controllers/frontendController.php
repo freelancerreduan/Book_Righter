@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Home;
+use App\Models\Book;
 use App\Models\About;
 use App\Models\AboutDetails;
 use App\Models\SocialMedia;
 use Illuminate\Support\Str;
-
+use App\Models\BookAuthor;
 class frontendController extends Controller
 {
     //
@@ -17,7 +18,7 @@ class frontendController extends Controller
         $social_media = SocialMedia::all();
         $about_details = About::first();
         // dd($about_details);
-        $about_description = Str::limit(strip_tags($about_details->description), 10);
+        $about_description = Str::limit(strip_tags(optional($about_details)->description), 10) ?? '';
         // dd($about_description);
         return view('frontend.index', compact('home_data', 'social_media', 'about_details', 'about_description'));
     }
@@ -30,7 +31,12 @@ class frontendController extends Controller
     }
 
     function book() {
-        return view('frontend.books');
+        $books = Book::all();
+        $book_author = BookAuthor::first();
+            return view('frontend.books',[
+                'book_author' => $book_author,
+                'books' => $books,
+            ]);
     }
 
     function blog() {

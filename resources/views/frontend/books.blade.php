@@ -188,89 +188,38 @@
 <!-- Hero Section -->
 <section class="text-center py-5">
     <div class="container">
-        <h1 class="hero-title">Books by Polash Mollah</h1>
+        <h1 class="hero-title">{{ $book_author->book_author_title }}</h1>
         <p class="hero-subtitle mt-3">
-            Explore the books authored by Polash Mollah, a Bangladeshi writer
-            known for addressing important social issues and inspiring personal growth. 
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt unde expedita nihil alias laudantium ab enim voluptatem corporis accusantium voluptatum repudiandae ipsum quas ut adipisci facere qui voluptatibus corrupti magni, id, perferendis ea? Facere facilis consectetur ea eum? Soluta eligendi omnis consequatur sint, dolores rerum. Quia ea excepturi facere inventore!
+           {{ html_entity_decode(strip_tags($book_author->book_author_des)) }}
         </p>
     </div>
 </section>
 
 <div class="container">
+    @foreach ($books as $book)
+        <div class="book-card">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <img src="{{ asset('admin/img/'. $book->book_img) }}" class="book-img" >
+                </div>
+                <div class="col-md-8">
+                    <h3 class="book-title">{{ $book->book_name }}</h3>
+                    <p class="mt-3">
+                        {{ \Illuminate\Support\Str::limit(strip_tags(html_entity_decode($book->book_des)), 300) }}
+                    </p>
 
-    <!-- Book 1 -->
-    <div class="book-card">
-        <div class="row align-items-center">
-            <div class="col-md-4">
-                <img src="{{ asset('frontend/image/book.jpg') }}" class="book-img" >
-            </div>
-            <div class="col-md-8">
-                <h3 class="book-title">Child Labours in Bangladesh</h3>
-                <p class="mt-3">
-                    This book examines the prevalence and <i>harsh realities</i> of child labor in Bangladesh,
-                    highlighting the social and economic challenges involved.
-                </p>
+                    <div class="mt-3">
 
-                <div class="mt-3">
-                    <button class="btn btn-custom me-2">
-                        📘 Download on Google Books
-                    </button>
-                    <button class="btn btn-custom">
-                        🛒 Read on Amazon Kindle
-                    </button>
+                @foreach($book->rel_to_book_link as $link)
+                        <a href="{{ $link->book_platform_link }}" class="btn btn-custom me-2">
+                            📘 {{ $link->book_platform_name }}
+                        </a>
+                    @endforeach
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Book 1 -->
-    <div class="book-card">
-        <div class="row align-items-center">
-            <div class="col-md-4">
-                <img src="{{ asset('frontend/image/book.jpg') }}" class="book-img" >
-            </div>
-            <div class="col-md-8">
-                <h3 class="book-title">Child Labours in Bangladesh</h3>
-                <p class="mt-3">
-                    This book examines the prevalence and <i>harsh realities</i> of child labor in Bangladesh,
-                    highlighting the social and economic challenges involved.
-                </p>
-
-                <div class="mt-3">
-                    <button class="btn btn-custom me-2">
-                        📘 Download on Google Books
-                    </button>
-                    <button class="btn btn-custom">
-                        🛒 Read on Amazon Kindle
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Book 1 -->
-    <div class="book-card">
-        <div class="row align-items-center">
-            <div class="col-md-4">
-                <img src="{{ asset('frontend/image/book.jpg') }}" class="book-img" >
-            </div>
-            <div class="col-md-8">
-                <h3 class="book-title">Child Labours in Bangladesh</h3>
-                <p class="mt-3">
-                    This book examines the prevalence and <i>harsh realities</i> of child labor in Bangladesh,
-                    highlighting the social and economic challenges involved.
-                </p>
-
-                <div class="mt-3">
-                    <button class="btn btn-custom me-2">
-                        📘 Download on Google Books
-                    </button>
-                    <button class="btn btn-custom">
-                        🛒 Read on Amazon Kindle
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @endforeach
 
 
 </div>
