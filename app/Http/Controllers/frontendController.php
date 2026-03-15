@@ -59,5 +59,16 @@ class frontendController extends Controller
         return view('frontend.contact');
     }
 
+      public function search(Request $request)
+    {
+        $search = $request->input('search');
 
+        $blogs_search = Blog::query()
+            ->where('blog_title', 'LIKE', "%{$search}%")
+            ->orWhere('blog_description', 'LIKE', "%{$search}%")
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('frontend.blog', compact('blogs_search', 'search'));
+    }
 }

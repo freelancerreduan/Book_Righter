@@ -80,7 +80,7 @@ Route::get('/contact', [frontendController::class, 'contact'])->name('contact');
 
 
 Route::get('/admin/blog/details/{id}', [frontendController::class, 'blog_details'])->name('admin.blog.detils');
-
+Route::post('/blog/search', [frontendController::class, 'search'])->name('blog.search');
 
 
 require __DIR__.'/auth.php';
