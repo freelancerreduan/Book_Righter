@@ -42,7 +42,7 @@ use Illuminate\Support\Str;
         <p class="mt-2">
           {{ Str::limit( html_entity_decode(strip_tags($blog->blog_description) ), 250) }}
         </p>
-        <a href="{{ route('admin.blog.detils', $blog->id ) }}" class="read-btn"> Read More </a>
+        <a href="{{ route('admin.blog.detils', $blog->id) }}" class="read-btn"> Read More </a>
       </div>
     </div>
     @endforeach

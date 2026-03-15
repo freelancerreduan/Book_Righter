@@ -50,8 +50,10 @@ class frontendController extends Controller
 
     function blog_details($id){
         $blog_single_page = Blog::find($id);
+        $all_blogs = Blog::all();
         return view('frontend.blog_single', [
             'blog_single_page' =>$blog_single_page,
+            'all_blogs' =>$all_blogs,
         ]);
     }
 

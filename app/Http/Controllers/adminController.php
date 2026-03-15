@@ -403,4 +403,6 @@ class adminController extends Controller
 
         return redirect()->route('admin.blog.add')->with('success', 'Blog Updated Successfully!');
     }
+
+
 }

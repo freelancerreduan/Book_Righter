@@ -301,6 +301,234 @@
       height: 45px;
       margin: 10px;
     }
+
+
+        :root {
+      --ink:       #1a1a2e;
+      --paper:     #f5f0e8;
+      --cream:     #fffdf8;
+      --accent:    #c8922a;
+      --accent2:   #2a6fc8;
+      --muted:     #8a8070;
+      --border:    #e2d9c8;
+      --card-bg:   #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--paper);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ─── Grain overlay ─────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: .5;
+    }
+
+    .container { position: relative; z-index: 1; }
+
+    /* ─── Top bar ───────────────────────────────── */
+    .top-bar {
+      background: var(--ink);
+      padding: 14px 0;
+      margin-bottom: 48px;
+    }
+    .top-bar .label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .top-bar .site-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ─── Main blog card ────────────────────────── */
+    .blog-card {
+      background: var(--card-bg);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 2px 40px rgba(26,26,46,.08), 0 1px 0 var(--border);
+      animation: fadeUp .6s ease both;
+    }
+
+    .blog-hero {
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+      transition: transform 8s ease;
+    }
+    .blog-hero:hover img { transform: scale(1.04); }
+    .blog-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,26,46,.55) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .blog-body { padding: 40px 44px 48px; }
+
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .blog-meta .tag {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: var(--accent);
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+    .blog-meta .date {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .blog-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 28px;
+      letter-spacing: -.01em;
+    }
+
+    .blog-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      margin-bottom: 28px;
+      border-radius: 2px;
+    }
+
+    .blog-description {
+      font-size: 16px;
+      line-height: 1.85;
+      color: #3a3830;
+      font-weight: 300;
+    }
+
+    /* ─── Sidebar ───────────────────────────────── */
+    .sidebar-card {
+      background: var(--card-bg);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 2px 40px rgba(26,26,46,.06), 0 1px 0 var(--border);
+      animation: fadeUp .6s .15s ease both;
+    }
+    .sidebar-header {
+      background: var(--ink);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sidebar-header .bar {
+      width: 3px; height: 18px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .sidebar-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: .02em;
+    }
+    .sidebar-body { padding: 8px 0; }
+
+    /* ─── Related item ──────────────────────────── */
+    .related-item {
+      display: flex;
+      gap: 14px;
+      padding: 16px 20px;
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: background .2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .related-item:last-child { border-bottom: none; }
+    .related-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform .25s ease;
+    }
+    .related-item:hover { background: #faf7f2; }
+    .related-item:hover::before { transform: scaleY(1); }
+
+    .related-thumb {
+      flex-shrink: 0;
+      width: 80px;
+      height: 62px;
+      border-radius: 2px;
+      object-fit: cover;
+      transition: transform .3s ease;
+    }
+    .related-item:hover .related-thumb { transform: scale(1.04); }
+
+    .related-info { flex: 1; min-width: 0; }
+    .related-info .related-title-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 6px;
+      transition: color .2s;
+    }
+    .related-item:hover .related-title-text { color: var(--accent); }
+    .related-date {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: .04em;
+    }
+
+    /* ─── Animations ────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Responsive ────────────────────────────── */
+    @media (max-width: 768px) {
+      .blog-body { padding: 28px 22px 36px; }
+      .blog-title { font-size: 24px; }
+      .blog-hero img { height: 260px; }
+    }
     </style>
 
 </head>

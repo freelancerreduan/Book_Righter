@@ -65,7 +65,7 @@ Route::post('/admin/blog/add/store', [adminController::class, 'blog_add_store'])
 Route::get('/admin/blog/edit/{id}', [adminController::class, 'blog_edit'])->name('admin.blog.edit');
 Route::put('/admin/blog/update/{id}', [adminController::class, 'blog_update'])->name('admin.blog.update');
 Route::delete('/admin/blog/delete/{id}', [adminController::class, 'blog_delete'])->name('admin.blog.delete');
-
+Route::get('/blog/details/{id}', [frontendController::class, 'blog_details'])->name('admin.blog.detils');
 
 
 
@@ -79,7 +79,7 @@ Route::get('/blog', [frontendController::class, 'blog'])->name('blog');
 Route::get('/contact', [frontendController::class, 'contact'])->name('contact');
 
 
-Route::get('/admin/blog/details/{id}', [frontendController::class, 'blog_details'])->name('admin.blog.detils');
+
 Route::post('/blog/search', [frontendController::class, 'search'])->name('blog.search');
 
 
