@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Home;
 use App\Models\Book;
+use App\Models\Blog;
 use App\Models\About;
 use App\Models\AboutDetails;
 use App\Models\SocialMedia;
@@ -35,12 +36,23 @@ class frontendController extends Controller
         $book_author = BookAuthor::first();
             return view('frontend.books',[
                 'book_author' => $book_author,
-                'books' => $books,
+                'books' => $books, 
             ]);
     }
 
     function blog() {
-        return view('frontend.blog');
+        $blogs = Blog::all();
+        return view('frontend.blog',[
+            'blogs' => $blogs,
+        ]);
+    }
+
+
+    function blog_details($id){
+        $blog_single_page = Blog::find($id);
+        return view('frontend.blog_single', [
+            'blog_single_page' =>$blog_single_page,
+        ]);
     }
 
     function contact() {

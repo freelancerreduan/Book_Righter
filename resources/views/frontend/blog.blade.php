@@ -1,5 +1,7 @@
 @extends('frontend.layouts.header')
-
+@php
+use Illuminate\Support\Str;
+@endphp
 <!-- Navbar -->
 @include('frontend.layouts.navbar')
 <!-- Hero Section -->
@@ -27,64 +29,22 @@
 <div class="container">
 
   <!-- Blog Item -->
-  <div class="blog-card row align-items-center">
-    <div class="col-md-4">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" class="blog-img">
+   @foreach ($blogs as $blog)
+    <div class="blog-card row align-items-center">
+      <div class="col-md-4">
+        <img src="{{ $blog->blog_img ? asset('admin/img/' . $blog->blog_img) : asset('admin/img/default.png') }}" class="blog-img">
+      </div>
+      <div class="col-md-8">
+        <h4>{{ $blog->blog_title }}</h4>
+        <small> {{ $blog->updated_at->format('d F Y') }} </small>
+        <p class="mt-2">
+            {{ Str::limit( html_entity_decode(strip_tags($blog->blog_description) ), 250) }}
+        </p>
+        <a href="{{ route('admin.blog.detils', $blog->id ) }}" class="read-btn"> Read More </a> 
+      </div>
     </div>
-    <div class="col-md-8">
-      <h4>5 Ways to Boost Your Patience in Everyday Life</h4>
-      <small>April 18, 2024</small>
-      <p class="mt-2">
-        Discover effective techniques to improve your patience and stay calm in your daily interactions.
-      </p>
-      <button class="read-btn">Read More</button>
-    </div>
-  </div>
+   @endforeach
 
-  <!-- Blog Item -->
-  <div class="blog-card row align-items-center">
-    <div class="col-md-4">
-      <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4" class="blog-img">
-    </div>
-    <div class="col-md-8">
-      <h4>Setting Goals for Personal Growth: A Beginner's Guide</h4>
-      <small>April 10, 2024</small>
-      <p class="mt-2">
-        Learn how to set achievable goals that will guide you on the path to self-improvement.
-      </p>
-      <button class="read-btn">Read More</button>
-    </div>
-  </div>
-
-  <!-- Blog Item -->
-  <div class="blog-card row align-items-center">
-    <div class="col-md-4">
-      <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7" class="blog-img">
-    </div>
-    <div class="col-md-8">
-      <h4>How to Stay Motivated During Challenging Times</h4>
-      <small>March 25, 2024</small>
-      <p class="mt-2">
-        Explore strategies to maintain motivation and overcome obstacles during difficult periods.
-      </p>
-      <button class="read-btn">Read More</button>
-    </div>
-  </div>
-
-  <!-- Blog Item -->
-  <div class="blog-card row align-items-center">
-    <div class="col-md-4">
-      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e" class="blog-img">
-    </div>
-    <div class="col-md-8">
-      <h4>Building Emotional Strength: Tips for Resilience</h4>
-      <small>March 10, 2024</small>
-      <p class="mt-2">
-        Learn practical tips to build emotional resilience and handle stress effectively.
-      </p>
-      <button class="read-btn">Read More</button>
-    </div>
-  </div>
 
   <!-- Load More -->
   <div class="text-center my-4">

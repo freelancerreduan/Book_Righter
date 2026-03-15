@@ -68,6 +68,7 @@ Route::delete('/admin/blog/delete/{id}', [adminController::class, 'blog_delete']
 
 
 
+
 // ===========================================================
 // Frontend Sections 
 // ===========================================================
@@ -78,7 +79,7 @@ Route::get('/blog', [frontendController::class, 'blog'])->name('blog');
 Route::get('/contact', [frontendController::class, 'contact'])->name('contact');
 
 
-
+Route::get('/admin/blog/details/{id}', [frontendController::class, 'blog_details'])->name('admin.blog.detils');
 
 
 

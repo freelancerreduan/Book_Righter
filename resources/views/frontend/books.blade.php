@@ -210,8 +210,8 @@
 
                     <div class="mt-3">
 
-                @foreach($book->rel_to_book_link as $link)
-                        <a href="{{ $link->book_platform_link }}" class="btn btn-custom me-2">
+                    @foreach($book->rel_to_book_link as $link)
+                        <a href="{{ $link->book_platform_link }}" target="_blank" class="btn btn-custom me-2">
                             📘 {{ $link->book_platform_name }}
                         </a>
                     @endforeach
